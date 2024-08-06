@@ -1,0 +1,13 @@
+.general{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+.titulo{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+
+    
+}
