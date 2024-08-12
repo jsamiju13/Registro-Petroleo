@@ -1,3 +1,5 @@
+let botonSonido =document.querySelector(".botonPlay")
+let botones = document.querySelectorAll("button")
 
 let botonAñadir = document.querySelector(".botonAñadir")
 
@@ -11,10 +13,18 @@ let tarjeta = document.querySelectorAll(".tarjeta")
 var inputNombre = document.querySelectorAll(".inputNombre")
 var inputSalario = document.querySelectorAll(".inputSalario")
 
-
+var on = 1
 let contTarjetas = 0
+
+for (i=0;i<botones.length;i++){
+    botones[i].addEventListener("click", function(){
+        botonSonido.play()
+    });
+
+}
+
 botonAñadir.addEventListener("click", function(){
-    buildTarjeta()
+    buildTarjeta(contTarjetas+1)
 
     tarjeta = document.querySelectorAll(".tarjeta")
 
@@ -26,44 +36,33 @@ botonAñadir.addEventListener("click", function(){
     inputNombre = document.querySelectorAll(".inputNombre");
     inputSalario = document.querySelectorAll(".inputSalario")
 
+    inputSalario[contTarjetas].addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, ''); // Elimina cualquier carácter que no sea un dígito
+        let formattedValue = new Intl.NumberFormat('es-ES').format(value); // Formatea el número
+        e.target.value = formattedValue;
+    });
 
-    
     eventoEdicion(contTarjetas)  
     eventoEliminar(contTarjetas)
     eventoDuplicar(contTarjetas)
+    eventoAparecer(contTarjetas)
+
+    if (on == 0){
+        oscuro()
+    }else{
+        claro()
+    }
+
     contTarjetas += 1
+    console.log("quedan ",contTarjetas," tarjetas")
 })
 
 
 
-function eventoEdicion(n){
-
-    botonGuardar[n].addEventListener("click", function(){
-        inputNombre[n].disabled = true
-        inputSalario[n].disabled = true
-    })     
-
-    botonEditar[n].addEventListener("click", function(){
-        inputNombre[n].disabled = false
-        inputSalario[n].disabled = false
-    })
-
-}
-
-function eventoEliminar(n){
-    botonEliminar[n].addEventListener("click", function(){
-        tarjeta[n].classList.add('oculta');
-        setTimeout(() => {
-            tarjetas.removeChild(tarjeta[n]);
-            contTarjetas -=1
-            console.log("quedan ",contTarjetas," tarjetas")
-        }, 500);
-    })
-}
-
 function eventoDuplicar(n){
     botonDuplicar[n].addEventListener("click",function(){
-        buildTarjeta()
+        botonSonido.play()
+        buildTarjeta(contTarjetas+1)
 
         tarjeta = document.querySelectorAll(".tarjeta")
 
@@ -75,29 +74,61 @@ function eventoDuplicar(n){
         inputNombre = document.querySelectorAll(".inputNombre");
         inputSalario = document.querySelectorAll(".inputSalario")
 
-        
         eventoEdicion(contTarjetas)  
         eventoEliminar(contTarjetas)
         eventoDuplicar(contTarjetas)
+        eventoAparecer(contTarjetas)
 
-        inputNombre[n+1].value = inputNombre[n].value
-        inputSalario[n+1].value = inputSalario[n].value
+        inputSalario[contTarjetas].value = inputSalario[n].value
+
+        inputSalario[contTarjetas].addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, ''); // Elimina cualquier carácter que no sea un dígito
+            let formattedValue = new Intl.NumberFormat('es-ES').format(value); // Formatea el número
+            e.target.value = formattedValue;
+        });
+
+        if (on == 0){
+            oscuro()
+        }else{
+            claro()
+        }
+
         contTarjetas += 1
+        console.log("quedan ",contTarjetas," tarjetas", " y n vale ", n)
     })
 }
 
-let modo = document.querySelector(".modo")
+function eventoEdicion(n){
 
+    botonGuardar[n].addEventListener("click", function(){
+        botonSonido.play()
+        inputNombre[n].disabled = true
+        inputSalario[n].disabled = true
+    })     
 
-modo.addEventListener("click", function(){
+    botonEditar[n].addEventListener("click", function(){
+        botonSonido.play()
+        inputNombre[n].disabled = false
+        inputSalario[n].disabled = false
+    })
+
+}
+
+function eventoEliminar(n){
+    botonEliminar[n].addEventListener("click", function(){
+        botonSonido.play()
+        tarjeta[n].classList.add('oculta');
+        tarjeta[n].classList.remove('vista');
+        setTimeout(() => {
+            tarjeta[n].classList.add('eliminada');
+            console.log("quedan ",contTarjetas," tarjetas", " y ", n)
+        }, 500);
+    })
+}
+
+function eventoAparecer(n){
+    setTimeout(() => {
+        tarjeta[n].classList.add('vista');
+    }, 25);
     
-})
-
-
-/*
-
-inputNombre[i-1].value = "hola"
-        
-        inputSalario[i-1].value = "123"
-            
-*/
+}

@@ -1,5 +1,5 @@
 
-    function buildTarjeta(){
+    function buildTarjeta(contTarjetas){
 
     const cardContainer = document.querySelector(".tarjetas");
 
@@ -20,7 +20,8 @@
         const inputN = document.createElement('input');
         inputN.className = 'inputNombre';
         inputN.type = 'text';
-        inputN.placeholder = "Nombre del trabajador";
+        inputN.placeholder = "Trabajador #"+contTarjetas;
+        inputN.disabled = true
 
         card.appendChild(inputN);
 
@@ -46,6 +47,11 @@
         inputS.className = 'inputSalario';
         inputS.type = 'number';
         inputS.placeholder = "Salario del Trabajador";
+        inputS.oninput = function() {
+            if (this.value.length > 7) {
+                this.value = this.value.slice(0, 7);
+            }};
+        inputS.disabled = true
 
         card.appendChild(inputS);
 
