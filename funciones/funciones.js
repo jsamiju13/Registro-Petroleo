@@ -140,11 +140,16 @@ function eventoSuma() {
     for(i=0;i<inputSalario.length;i++){
         sum += Number(inputSalario[i].value) || 0;
         if(sum == 1){
+            
             costoPago.textContent = sum+" Lempira";
         }else{
-            costoPago.textContent = sum+" Lempiras";
+            costoPago.textContent = formatNumber(sum)+" Lempiras";
         }
         
     }
     
+}
+
+function formatNumber(num) {
+    return num.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
