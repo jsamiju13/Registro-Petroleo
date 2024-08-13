@@ -13,7 +13,10 @@ let tarjeta = document.querySelectorAll(".tarjeta")
 var inputNombre = document.querySelectorAll(".inputNombre")
 var inputSalario = document.querySelectorAll(".inputSalario")
 
+let costoPago = document.querySelector(".costo h3")
+
 var on = 1
+var sum = 0
 let contTarjetas = 0
 
 for (i=0;i<botones.length;i++){
@@ -35,7 +38,6 @@ botonAñadir.addEventListener("click", function(){
 
     inputNombre = document.querySelectorAll(".inputNombre");
     inputSalario = document.querySelectorAll(".inputSalario")
-
     inputSalario[contTarjetas].addEventListener('input', function (e) {
         let value = e.target.value.replace(/\D/g, ''); // Elimina cualquier carácter que no sea un dígito
         let formattedValue = new Intl.NumberFormat('es-ES').format(value); // Formatea el número
@@ -46,7 +48,6 @@ botonAñadir.addEventListener("click", function(){
     eventoEliminar(contTarjetas)
     eventoDuplicar(contTarjetas)
     eventoAparecer(contTarjetas)
-
     if (on == 0){
         oscuro()
     }else{
@@ -78,6 +79,7 @@ function eventoDuplicar(n){
         eventoEliminar(contTarjetas)
         eventoDuplicar(contTarjetas)
         eventoAparecer(contTarjetas)
+        
 
         inputSalario[contTarjetas].value = inputSalario[n].value
 
@@ -92,9 +94,9 @@ function eventoDuplicar(n){
         }else{
             claro()
         }
-
+        
+        eventoSuma()
         contTarjetas += 1
-        console.log("quedan ",contTarjetas," tarjetas", " y n vale ", n)
     })
 }
 
@@ -104,6 +106,7 @@ function eventoEdicion(n){
         botonSonido.play()
         inputNombre[n].disabled = true
         inputSalario[n].disabled = true
+        eventoSuma()
     })     
 
     botonEditar[n].addEventListener("click", function(){
@@ -123,6 +126,8 @@ function eventoEliminar(n){
             tarjeta[n].classList.add('eliminada');
             console.log("quedan ",contTarjetas," tarjetas", " y ", n)
         }, 500);
+        inputSalario[n].value = 0
+        eventoSuma()
     })
 }
 
@@ -130,5 +135,20 @@ function eventoAparecer(n){
     setTimeout(() => {
         tarjeta[n].classList.add('vista');
     }, 25);
+    
+}
+
+function eventoSuma() {
+    console.log(inputSalario.length)
+    sum = 0
+    for(i=0;i<inputSalario.length;i++){
+        sum += Number(inputSalario[i].value) || 0;
+        if(sum == 1){
+            costoPago.textContent = sum+" Lempira";
+        }else{
+            costoPago.textContent = sum+" Lempiras";
+        }
+        
+    }
     
 }

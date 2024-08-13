@@ -6,7 +6,7 @@
 .general{
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 5% 60%;
+    grid-template-rows: 5% 60% 20%;
     background-color: var(--bg-color);
     position: absolute;
     overflow: auto;
@@ -28,7 +28,7 @@
     color: var(--text-color);
 }
 
-h2{
+.trabajadores h2{
     margin-top: 5%;
     margin-bottom: 0%;
     font-size: 6vw;
@@ -47,6 +47,28 @@ h2{
     border-width: 1vw;
     border-radius: 2vh;
     box-shadow: 10px 15px 15px rgba(0, 0, 0, 0.5);
+}
+
+.costo{
+    background-color: var(--bg-color);
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: min-content auto min-content;
+    margin: 0 3%;
+    border-style: solid;
+    border-color: var(--border-color);
+    border-width: 1vw;
+    border-radius: 2vh;
+    box-shadow: 10px 15px 15px rgba(0, 0, 0, 0.5);
+}
+
+.costo h2{
+    font-size: 6vw;
+    color: var(--text-color);
+}
+.costo h3{
+    font-size: 3vh;
+    color: var(--text-color);
 }
 
 .tarjetas{
