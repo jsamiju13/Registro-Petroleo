@@ -38,11 +38,7 @@ botonAñadir.addEventListener("click", function(){
 
     inputNombre = document.querySelectorAll(".inputNombre");
     inputSalario = document.querySelectorAll(".inputSalario")
-    inputSalario[contTarjetas].addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, ''); // Elimina cualquier carácter que no sea un dígito
-        let formattedValue = new Intl.NumberFormat('es-ES').format(value); // Formatea el número
-        e.target.value = formattedValue;
-    });
+    
 
     eventoEdicion(contTarjetas)  
     eventoEliminar(contTarjetas)
@@ -94,7 +90,7 @@ function eventoDuplicar(n){
         }else{
             claro()
         }
-        
+
         eventoSuma()
         contTarjetas += 1
     })
