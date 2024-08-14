@@ -6,7 +6,9 @@ let trabajadores = document.querySelector(".trabajadores")
 let tarjetaIcon = document.querySelectorAll(".tarjeta i")
 let modo = document.querySelector(".modo")
 let icon = document.querySelectorAll("i")
+let inputes = document.querySelectorAll("input")
 let costo = document.querySelector(".costo")
+let diessel= document.querySelector(".diessel")
 
 modo.addEventListener("click", function(){
     if (on == 1){
@@ -21,7 +23,7 @@ modo.addEventListener("click", function(){
 
 
 
-function paint(n){
+function paint(){
     
     if (fondo.style.getPropertyValue('--bg-color') === '#F8FAFC'){
         oscuro()
@@ -31,17 +33,23 @@ function paint(n){
 }
 
 function claro(){
+    botones = document.querySelectorAll("button")
     icon = document.querySelectorAll("i")
-    inputes = document.querySelectorAll(".tarjeta input")
+    inputes = document.querySelectorAll("input")
     fondo.style.setProperty('--bg-color','#F8FAFC')
     titulo.style.setProperty('--text-color','#0F172A')
+
     trabajadores.style.setProperty('--bg-color','#FFFFFF')
     trabajadores.style.setProperty('--border-color','#dee1e3')
-    costo.style.setProperty('--bg-color','#F8FAFC')
-    costo.style.setProperty('--border-color','#dee1e3')
-    modo.style.setProperty('--bg-color','#ebf5ff')
-    botonAñadir.style.setProperty('--bg-color', '#ebf5ff');
+    trabajadores.style.setProperty('--box-shadow', "10px 10px 10px rgba(0, 0, 0, 0.3)");
 
+    costo.style.setProperty('--bg-color','#FFFFFF')
+    costo.style.setProperty('--border-color','#dee1e3')
+    costo.style.setProperty('--box-shadow', "10px 10px 10px rgba(0, 0, 0, 0.3)");
+
+    diessel.style.setProperty('--bg-color','#FFFFFF')
+    diessel.style.setProperty('--border-color','#dee1e3')
+    diessel.style.setProperty('--box-shadow', "10px 10px 10px rgba(0, 0, 0, 0.3)");
     for (i=0;i<textoH2.length;i++){
         textoH2[i].style.setProperty('--text-color','#0F172A')
     }
@@ -50,8 +58,22 @@ function claro(){
         textoH3[i].style.setProperty('--text-color','#0F172A')
     }
 
+    for (i=0;i<botones.length;i++){
+        botones[i].style.setProperty('--bg-color', '#ebf5ff');
+        botones[i].style.setProperty('--box-shadow', "4px 4px 4px rgba(0, 0, 0, 0.3)");
+    }
+
     for (i=0;i<icon.length;i++){
         icon[i].style.setProperty('--text-color', '#007BFF');
+        
+    }
+
+    for (i=0;i<inputes.length;i++){
+        inputes[i].style.setProperty('--placeholder-color', "#a2a5a6");
+        inputes[i].style.setProperty('--disabled-bg-color', "#ebf5ff");
+        inputes[i].style.setProperty('--disabled-border-color', "#ebf5ff");
+        inputes[i].style.setProperty('--disabled-text-color', "#a2a5a6");
+        inputes[i].style.setProperty('--box-shadow', "4px 4px 4px rgba(0, 0, 0, 0.3)");
     }
 
     for (i=0;i<botonGuardar.length;i++){
@@ -73,30 +95,28 @@ function claro(){
     for (i=0;i<tarjeta.length;i++){
         tarjeta[i].style.setProperty('--bg-color', '#F8FAFC');
         tarjeta[i].style.setProperty('--border-color','#dee1e3')
-    }
-    
-    
-
-    for (i=0;i<inputes.length;i++){
-        inputes[i].style.setProperty('--placeholder-color', "#a2a5a6");
-        inputes[i].style.setProperty('--disabled-bg-color', "#ebf5ff");
-        inputes[i].style.setProperty('--disabled-border-color', "#ebf5ff");
-        inputes[i].style.setProperty('--disabled-text-color', "#a2a5a6");
+        tarjeta[i].style.setProperty('--box-shadow', "7px 7px 7px rgba(0, 0, 0, 0.3)");
     }
 }
 
 function oscuro(){
     icon = document.querySelectorAll("i")
-    inputes = document.querySelectorAll(".tarjeta input")
+    inputes = document.querySelectorAll("input")
     fondo.style.setProperty('--bg-color','#0F172A')
     titulo.style.setProperty('--text-color','#FFFFFF')
+
     trabajadores.style.setProperty('--bg-color','#1E293B')
     trabajadores.style.setProperty('--border-color','#475569')
+    trabajadores.style.setProperty('--box-shadow', "10px 10px 10px rgba(255, 255, 255, 0.3)");
+
     costo.style.setProperty('--bg-color','#1E293B')
     costo.style.setProperty('--border-color','#475569')
-    modo.style.setProperty('--bg-color','#334155')
-    botonAñadir.style.setProperty('--bg-color', '#334155');
-    
+    costo.style.setProperty('--box-shadow', "10px 10px 10px rgba(255, 255, 255, 0.3)");
+
+    diessel.style.setProperty('--bg-color','#1E293B')
+    diessel.style.setProperty('--border-color','#475569')
+    diessel.style.setProperty('--box-shadow', "10px 10px 10px rgba(255, 255, 255, 0.3)");
+
     for (i=0;i<textoH2.length;i++){
         textoH2[i].style.setProperty('--text-color','#FFFFFF')
     }
@@ -105,8 +125,21 @@ function oscuro(){
         textoH3[i].style.setProperty('--text-color','#FFFFFF')
     }
 
+    for (i=0;i<botones.length;i++){
+        botones[i].style.setProperty('--bg-color', '#334155');
+        botones[i].style.setProperty('--box-shadow', "4px 4px 4px rgba(255, 255, 255, 0.3)");
+    }
+
     for (i=0;i<icon.length;i++){
         icon[i].style.setProperty('--text-color', '#FFFFFF');
+    }
+
+    for (i=0;i<inputes.length;i++){
+        inputes[i].style.setProperty('--placeholder-color', "#c0c1c2");
+        inputes[i].style.setProperty('--disabled-bg-color', "#334155");
+        inputes[i].style.setProperty('--disabled-border-color', "#334155");
+        inputes[i].style.setProperty('--disabled-text-color', "#c0c1c2");
+        inputes[i].style.setProperty('--box-shadow', "4px 4px 4px rgba(255, 255, 255, 0.3)");
     }
 
     for (i=0;i<botonGuardar.length;i++){
@@ -128,15 +161,8 @@ function oscuro(){
     for (i=0;i<tarjeta.length;i++){
         tarjeta[i].style.setProperty('--bg-color', '#1E293B');
         tarjeta[i].style.setProperty('--border-color','#475569')
+        tarjeta[i].style.setProperty('--box-shadow', "7px 7px 7px rgba(255, 255, 255, 0.3)");
     }
-    
-    for (i=0;i<inputes.length;i++){
-        inputes[i].style.setProperty('--placeholder-color', "#c0c1c2");
-        inputes[i].style.setProperty('--disabled-bg-color', "#334155");
-        inputes[i].style.setProperty('--disabled-border-color', "#334155");
-        inputes[i].style.setProperty('--disabled-text-color', "#c0c1c2");
-    }
-
 }
 
-claro()
+paint()

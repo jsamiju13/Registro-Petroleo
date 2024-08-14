@@ -50,7 +50,9 @@
         inputS.oninput = function() {
             if (this.value.length > 7) {
                 this.value = this.value.slice(0, 7);
-            }};
+            }
+            eventoSuma()
+        };
         inputS.disabled = true
 
         card.appendChild(inputS);
@@ -67,3 +69,5 @@
         
         
 }
+
+
