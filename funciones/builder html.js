@@ -1,3 +1,20 @@
+let general = document.querySelector(".general")
+let trabajadores = document.querySelector(".trabajadores")
+let costo = document.querySelector(".costo")
+let botonAñadir = document.querySelector(".botonAñadir")
+let diessel = document.querySelector(".diessel")
+let costoDiessel = document.querySelector(".costoDiessel")
+let costoLitro = document.querySelector(".costoLitro")
+
+general.style.setProperty('--grid-rows', '10% 10% min-content 10%');
+
+botonAñadir.style.setProperty('--display-state', 'none');
+trabajadores.style.setProperty('--grid-rows', '100% auto min-content')
+
+
+diessel.style.setProperty('--grid-rows', '100% auto min-content');
+costoDiessel.style.setProperty('--display-state', 'none');
+costoLitro.style.setProperty('--display-state', 'none');
 
     function buildTarjeta(contTarjetas){
 

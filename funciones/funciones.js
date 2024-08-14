@@ -1,37 +1,109 @@
+
 let botonSonido =document.querySelector(".botonPlay")
 let botones = document.querySelectorAll("button")
-
-let botonAñadir = document.querySelector(".botonAñadir")
+let flechas = document.querySelectorAll("article i")
 
 let botonGuardar 
 let botonEditar 
 let botonEliminar
 let botonDuplicar
 
+let trabajadoresH2 = document.querySelector(".trabajadores article")
+let filas
+let diesselH2 = document.querySelector(".diessel article")
+
 let tarjetas = document.querySelector(".tarjetas")
 let tarjeta = document.querySelectorAll(".tarjeta")
 var inputNombre = document.querySelectorAll(".inputNombre")
 var inputSalario = document.querySelectorAll(".inputSalario")
+
+let costoPago = document.querySelector(".costo h3")
 
 let botonSumarDiessel = document.querySelector("#sumarDiessel")
 let botonRestarDiessel = document.querySelector("#restarDiessel")
 let inputDiessel = document.querySelector(".diessel input")
 let litrosDiessel = document.querySelectorAll(".costoLitro h3")
 
-let costoPago = document.querySelector(".costo h3")
+trabajadoresH2.addEventListener("click", function(){
+    if (getComputedStyle(trabajadores).getPropertyValue('--grid-rows').trim() === '100% auto min-content'){
 
-var on = 1
-var sum = 0
-let precioLitros = 10
-litrosDiessel[0].textContent = "HNL/L: "+ formatNumber(precioLitros) 
-let contTarjetas = 0
+        filas = getComputedStyle(general).gridTemplateRows.split(' ') 
+        filas[1] = "60%"
+        general.style.gridTemplateRows = filas.join(' ');
+
+        for (i=0;i<2;i++){
+            flechas[i].classList.remove("bx-chevron-up")
+            flechas[i].classList.add("bx-chevron-down")
+        }
+
+        trabajadores.style.setProperty('--grid-rows', '10% auto min-content')
+
+        setTimeout(() => {
+            botonAñadir.style.setProperty('--display-state', 'grid');
+        }, 250);
+        
+    }else{
+
+        
+        filas = getComputedStyle(general).gridTemplateRows.split(' ') 
+        filas[1] = "10%"
+        general.style.gridTemplateRows = filas.join(' ');
+
+        for (i=0;i<2;i++){
+            flechas[i].classList.add("bx-chevron-up")
+            flechas[i].classList.remove("bx-chevron-down")
+        }
+
+        botonAñadir.style.setProperty('--display-state', 'none');
+        trabajadores.style.setProperty('--grid-rows', '100% auto min-content')
+    }
+})
+
+diesselH2.addEventListener("click", function(){
+    if (getComputedStyle(diessel).getPropertyValue('--grid-rows').trim() === '100% auto min-content'){
+
+        filas = getComputedStyle(general).gridTemplateRows.split(' ') 
+        filas[3] = "40%"
+        general.style.gridTemplateRows = filas.join(' ');
+
+        for (i=2;i<5;i++){
+            flechas[i].classList.remove("bx-chevron-up")
+            flechas[i].classList.add("bx-chevron-down")
+        }
+        flechas[2].classList.remove("bx-chevron-down")
+
+        diessel.style.setProperty('--grid-rows', 'min-content auto min-content')
+        setTimeout(() => {
+            costoDiessel.style.setProperty('--display-state', 'grid');
+            costoLitro.style.setProperty('--display-state', 'flex');
+        }, 250);
+        
+    }else{
+        filas = getComputedStyle(general).gridTemplateRows.split(' ') 
+        filas[3] = "10%"
+        general.style.gridTemplateRows = filas.join(' ');
+
+        for (i=2;i<5;i++){
+            flechas[i].classList.add("bx-chevron-up")
+            flechas[i].classList.remove("bx-chevron-down")
+        }
+        flechas[2].classList.remove("bx-chevron-up")
+
+        diessel.style.setProperty('--grid-rows', '100% auto min-content')
+            costoDiessel.style.setProperty('--display-state', 'none');
+            costoLitro.style.setProperty('--display-state', 'none');
+    }
+    
+    
+})
 
 for (i=0;i<botones.length;i++){
     botones[i].addEventListener("click", function(){
         botonSonido.play()
     });
-
 }
+var on = 1
+let contTarjetas = 0
 
 botonAñadir.addEventListener("click", function(){
     buildTarjeta(contTarjetas+1)
@@ -138,6 +210,8 @@ function eventoAparecer(n){
     
 }
 
+var sum = 0
+
 function eventoSuma() {
     sum = 0
     for(i=0;i<inputSalario.length;i++){
@@ -154,8 +228,11 @@ function eventoSuma() {
 }
 
 function formatNumber(num) {
-    return num.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return num.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 }
+
+let precioLitros = 23.43
+litrosDiessel[0].textContent = "HNL/L: "+ formatNumber(precioLitros) 
 
 function calcularDiessel(element){
     
@@ -163,14 +240,14 @@ function calcularDiessel(element){
         element.value = element.value.slice(0, 4);
     };
 
-    litrosDiessel[1].textContent = "Total: "+ formatNumber(Number(inputDiessel.value)*precioLitros)+" HNL"
+    litrosDiessel[1].textContent = "Total: "+ formatNumber(Number(inputDiessel.value)/precioLitros)+" litros"
     if(litrosDiessel[1].textContent == "Total: "){
-        litrosDiessel[1].textContent = "Total: 0 HNL"
+        litrosDiessel[1].textContent = "Total: 0 litros"
     }
 }
 
 botonSumarDiessel.addEventListener("click", function(){
-    inputDiessel.value = Number(inputDiessel.value) +25
+    inputDiessel.value = Number(inputDiessel.value) +250
     if (inputDiessel.value > 9999){
         inputDiessel.value = 9999
     }
@@ -179,7 +256,7 @@ botonSumarDiessel.addEventListener("click", function(){
 })
 
 botonRestarDiessel.addEventListener("click", function(){
-    inputDiessel.value = Number(inputDiessel.value) -25
+    inputDiessel.value = Number(inputDiessel.value) -250
     if (inputDiessel.value < 0){
         inputDiessel.value = 0
     }

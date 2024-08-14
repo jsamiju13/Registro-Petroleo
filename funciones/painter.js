@@ -2,13 +2,10 @@ let fondo = document.querySelector(".general")
 let titulo = document.querySelector(".titulo")
 let textoH2 = document.querySelectorAll("h2")
 let textoH3 = document.querySelectorAll("h3")
-let trabajadores = document.querySelector(".trabajadores")
 let tarjetaIcon = document.querySelectorAll(".tarjeta i")
 let modo = document.querySelector(".modo")
 let icon = document.querySelectorAll("i")
 let inputes = document.querySelectorAll("input")
-let costo = document.querySelector(".costo")
-let diessel= document.querySelector(".diessel")
 
 modo.addEventListener("click", function(){
     if (on == 1){
