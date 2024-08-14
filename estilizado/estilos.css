@@ -218,12 +218,6 @@ button:active{
     gap: 5%;
 }
 
-.costoLitro{
-    display: var(--display-state);
-    justify-content: space-between;
-    margin: 0 3%;
-}
-
 .diessel h2{
     font-size: 6vw;
     color: var(--text-color);

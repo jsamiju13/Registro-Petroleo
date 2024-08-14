@@ -22,7 +22,6 @@ let costoPago = document.querySelector(".costo h3")
 let botonSumarDiessel = document.querySelector("#sumarDiessel")
 let botonRestarDiessel = document.querySelector("#restarDiessel")
 let inputDiessel = document.querySelector(".diessel input")
-let litrosDiessel = document.querySelectorAll(".costoLitro h3")
 
 trabajadoresH2.addEventListener("click", function(){
     if (getComputedStyle(trabajadores).getPropertyValue('--grid-rows').trim() === '100% auto min-content'){
@@ -60,10 +59,10 @@ trabajadoresH2.addEventListener("click", function(){
 })
 
 diesselH2.addEventListener("click", function(){
-    if (getComputedStyle(diessel).getPropertyValue('--grid-rows').trim() === '100% auto min-content'){
+    if (getComputedStyle(diessel).getPropertyValue('--grid-rows').trim() === '100% auto'){
 
         filas = getComputedStyle(general).gridTemplateRows.split(' ') 
-        filas[3] = "40%"
+        filas[3] = "35%"
         general.style.gridTemplateRows = filas.join(' ');
 
         for (i=2;i<5;i++){
@@ -72,10 +71,9 @@ diesselH2.addEventListener("click", function(){
         }
         flechas[2].classList.remove("bx-chevron-down")
 
-        diessel.style.setProperty('--grid-rows', 'min-content auto min-content')
+        diessel.style.setProperty('--grid-rows', 'min-content auto')
         setTimeout(() => {
             costoDiessel.style.setProperty('--display-state', 'grid');
-            costoLitro.style.setProperty('--display-state', 'flex');
         }, 250);
         
     }else{
@@ -89,9 +87,8 @@ diesselH2.addEventListener("click", function(){
         }
         flechas[2].classList.remove("bx-chevron-up")
 
-        diessel.style.setProperty('--grid-rows', '100% auto min-content')
+        diessel.style.setProperty('--grid-rows', '100% auto')
             costoDiessel.style.setProperty('--display-state', 'none');
-            costoLitro.style.setProperty('--display-state', 'none');
     }
     
     
@@ -131,8 +128,6 @@ botonAñadir.addEventListener("click", function(){
 
     contTarjetas += 1
 })
-
-
 
 function eventoDuplicar(n){
     botonDuplicar[n].addEventListener("click",function(){
@@ -214,15 +209,10 @@ var sum = 0
 
 function eventoSuma() {
     sum = 0
+    costoPago.textContent = formatNumber(+sum + Number(inputDiessel.value))+" HNL"
     for(i=0;i<inputSalario.length;i++){
         sum += Number(inputSalario[i].value) || 0;
-        if(sum == 1){
-            
-            costoPago.textContent = sum+" HNL";
-        }else{
-            costoPago.textContent = formatNumber(sum)+" HNL";
-        }
-        
+        costoPago.textContent = formatNumber(+sum + Number(inputDiessel.value))+" HNL";
     }
     
 }
@@ -231,19 +221,12 @@ function formatNumber(num) {
     return num.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 }
 
-let precioLitros = 23.43
-litrosDiessel[0].textContent = "HNL/L: "+ formatNumber(precioLitros) 
-
 function calcularDiessel(element){
     
     if (element.value.length > 4) {
         element.value = element.value.slice(0, 4);
     };
-
-    litrosDiessel[1].textContent = "Total: "+ formatNumber(Number(inputDiessel.value)/precioLitros)+" litros"
-    if(litrosDiessel[1].textContent == "Total: "){
-        litrosDiessel[1].textContent = "Total: 0 litros"
-    }
+    eventoSuma()
 }
 
 botonSumarDiessel.addEventListener("click", function(){
