@@ -32,7 +32,7 @@ let inputPalma = document.querySelectorAll(".palma input")
 
 let recuentoItemA = document.querySelectorAll(".recuento .itemA")
 let recuentoItemB = document.querySelectorAll(".recuento .itemB")
-let enviarCorreo = document.querySelector(".recuento .enviarCorreo")
+let enviarCorreoBoton = document.querySelector(".recuento .enviarCorreo")
 
 trabajadoresH2.addEventListener("click", function(){
     if (getComputedStyle(trabajadores).getPropertyValue('--grid-rows').trim() === '100% auto min-content'){
@@ -421,19 +421,3 @@ function mostrarFecha() {
 }
 
 mostrarFecha()
-
-function capturar() {
-    html2canvas(document.querySelector('.recuento')).then(canvas => {
-        var imgData = canvas.toDataURL('image/png');
-        var link = document.createElement('a');
-        link.href = imgData;
-        link.download = 'recuento.png';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    });
-}
-
-enviarCorreo.addEventListener("click", function(){
-    capturar()
-})
