@@ -33,6 +33,7 @@ let inputPalma = document.querySelectorAll(".palma input")
 let recuentoItemA = document.querySelectorAll(".recuento .itemA")
 let recuentoItemB = document.querySelectorAll(".recuento .itemB")
 let enviarCorreoBoton = document.querySelector(".recuento .enviarCorreo")
+let tomarCapBoton = document.querySelector(".recuento .tomarCap")
 
 trabajadoresH2.addEventListener("click", function(){
     if (getComputedStyle(trabajadores).getPropertyValue('--grid-rows').trim() === '100% auto min-content'){
