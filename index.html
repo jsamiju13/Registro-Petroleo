@@ -41,7 +41,7 @@
             </article>
 
             <article>
-                <h3>0,00 HNL</h3>
+                <h3>0.0 HNL</h3>
             </article>
         </section>
 
@@ -60,11 +60,89 @@
             
         </section>
 
+        <section class="palma">
+
+            <article>
+                <i class='bx bx-chevron-up tipoB'></i>
+                <h2>Palma:</h2>
+                <i class='bx bx-chevron-up tipoB'></i>
+            </article>
+
+            <div class="costoPalma">
+                <button class="sumarPalma"><i class=' bx bxs-chevron-up' ></i></button>
+                <input type="number" placeholder="Precio de la tonelada" oninput="slice4(this),calcularPalma()"></input>
+                <button class="restarPalma"><i class=' bx bxs-chevron-down' ></i></button>
+
+                <button class="sumarPalma"><i class=' bx bxs-chevron-up' ></i></button>
+                <input type="number" placeholder="costo/T del camion" oninput="slice4(this),calcularPalma()"></input>
+                <button class="restarPalma"><i class=' bx bxs-chevron-down' ></i></button>
+
+                <button class="sumarPalma"><i class=' bx bxs-chevron-up' ></i></button>
+                <input type="number" placeholder="Cantidad de Toneladas" oninput="slice4(this),calcularPalma()"> </input>
+                <button class="restarPalma"><i class=' bx bxs-chevron-down' ></i></button>
+
+                <br>
+
+                <article>
+                    <span>
+                        <h3>0 HNL(-0)</h3>
+                    </span>
+                </article>
+                
+            </div>
+
+            
+        </section>
+
+        <section class="recuento">
+            <article>
+                <i class='bx bx-chevron-up tipoB'></i>
+                <h2>Recuento:</h2>
+                <i class='bx bx-chevron-up tipoB'></i>
+            </article>
+
+            <div class="recuentoSummary">
+                <h3 class="itemA">Dinero a pagar por trabajadores:</h3>
+                <h3 class="itemB">0 HNL</h3>
+
+                <h3 class="itemA">Dinero a pagado por diessel:</h3>
+                <h3 class="itemB">0 HNL</h3>
+
+                <h3 class="itemA">Precio de cada tonelada:</h3>
+                <h3 class="itemB">0 HNL</h3>
+
+                <h3 class="itemA">Precio del camión por tonelada:</h3>
+                <h3 class="itemB">0 HNL</h3>
+
+                <h3 class="itemA">Cantidad de Toneladas Sacadas:</h3>
+                <h3 class="itemB">0 T</h3>
+
+                <h3 class="itemA">Dinero a pagar por el camión:</h3>
+                <h3 class="itemB">0 HNL</h3>
+
+                <h3 class="itemA">Total de gasto:</h3>
+                <h3 class="itemB">0 HNL</h3>
+
+                <h3 class="itemA">Total de ganancia:</h3>
+                <h3 class="itemB">0 HNL</h3>
+            </div>
+
+            <article class="recuentoFecha">
+                <h3></h3>
+                <button class="enviarCorreo"><i class='bx bxs-envelope' ></i></button>
+                <br>
+            </article>
+
+        </section>
+
         <button class="modo"><i class='bx bxs-sun' ></i></button>
     </div>
-    
+    <script src="paquetes/node_modules/html2canvas/dist/html2canvas.min.js"></script>
+
     <script src="funciones/builder html.js"></script>
     <script src="funciones/funciones.js"></script>
     <script src="funciones/painter.js"></script>
+
+    
 </body>
 </html>

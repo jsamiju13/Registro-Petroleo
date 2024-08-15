@@ -35,6 +35,7 @@ button:active{
     overflow: auto;
     scrollbar-width: none;
     gap: 5%;
+    padding-bottom: 7%;
     width: 100vw;
     height: 100vh;
     top: 0%;
@@ -200,7 +201,6 @@ button:active{
     grid-template-columns: auto;
     grid-template-rows: var(--grid-rows);
     margin: 0 3%;
-    margin-bottom: 5%;
     border-style: solid;
     border-color: var(--border-color);
     border-width: 1vw;
@@ -257,8 +257,115 @@ button:active{
     font-size: 4vw;
 }
 
+.palma{
+    background-color: var(--bg-color);
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: var(--grid-rows);
+    margin: 0 3%;
+    border-style: solid;
+    border-color: var(--border-color);
+    border-width: 1vw;
+    border-radius: 2vh;
+    box-shadow: var(--box-shadow);
+}
 
+.costoPalma{
+    display: var(--display-state);
+    grid-template-columns: auto auto auto;
+    grid-template-rows: min-content auto min-content;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    gap: 5%;
+}
 
+.palma h2{
+    font-size: 6vw;
+    color: var(--text-color);
+}
+
+.palma h3{
+    font-size: 2.3vh;
+    color: var(--text-color);
+}
+
+.palma button{
+    border-style: solid;
+    border-radius: 1.5vh;
+    border-color: transparent;
+    background-color: var(--bg-color);
+    box-shadow: var(--box-shadow);
+    font-size: 9vw;
+}
+
+.palma input{
+    height: 7vmin;
+    width: 45vw;
+    border-radius: 2vh;
+    border-style: solid;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    font-size: 5vw;
+}
+
+.palma input:focus{
+    border-color: #007BFF;
+    outline: none;
+}
+
+.palma input::placeholder{
+    color: var(--placeholder-color);
+    font-size: 4vw;
+}
+
+.recuento{
+    background-color: var(--bg-color);
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: var(--grid-rows);
+    margin: 0 3%;
+    margin-bottom: var(--margin-bottom);
+    border-style: solid;
+    border-color: var(--border-color);
+    border-width: 1vw;
+    border-radius: 2vh;
+    box-shadow: var(--box-shadow);
+}
+
+.recuentoSummary{
+    display: var(--display-state);
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    justify-content: center;
+    justify-items: center;
+    margin: 0 10%;
+    gap: 0%;
+}
+
+.recuentoFecha{
+    display: var(--display-state);
+    align-items: center;
+}
+
+.recuento h2{
+    font-size: 6vw;
+    color: var(--text-color);
+}
+
+.recuento h3{
+    font-size: 2.05vh;
+    color: var(--text-color);
+}
+
+.recuento button{
+    border-style: solid;
+    border-radius: 1.5vh;
+    border-color: transparent;
+    background-color: var(--bg-color);
+    box-shadow: var(--box-shadow);
+    font-size: 9vw;
+}
 
 
 

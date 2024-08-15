@@ -8,9 +8,11 @@ let botonEditar
 let botonEliminar
 let botonDuplicar
 
-let trabajadoresH2 = document.querySelector(".trabajadores article")
 let filas
+let trabajadoresH2 = document.querySelector(".trabajadores article")
 let diesselH2 = document.querySelector(".diessel article")
+let palmaH2 =  document.querySelector(".palma article")
+let recuentoH2 = document.querySelector(".recuento article")
 
 let tarjetas = document.querySelector(".tarjetas")
 let tarjeta = document.querySelectorAll(".tarjeta")
@@ -18,10 +20,19 @@ var inputNombre = document.querySelectorAll(".inputNombre")
 var inputSalario = document.querySelectorAll(".inputSalario")
 
 let costoPago = document.querySelector(".costo h3")
+let totalPalma = document.querySelector(".palma h3")
 
 let botonSumarDiessel = document.querySelector("#sumarDiessel")
 let botonRestarDiessel = document.querySelector("#restarDiessel")
 let inputDiessel = document.querySelector(".diessel input")
+
+let botonSumarPalma = document.querySelectorAll(".sumarPalma")
+let botonRestarPalma = document.querySelectorAll(".restarPalma")
+let inputPalma = document.querySelectorAll(".palma input")
+
+let recuentoItemA = document.querySelectorAll(".recuento .itemA")
+let recuentoItemB = document.querySelectorAll(".recuento .itemB")
+let enviarCorreo = document.querySelector(".recuento .enviarCorreo")
 
 trabajadoresH2.addEventListener("click", function(){
     if (getComputedStyle(trabajadores).getPropertyValue('--grid-rows').trim() === '100% auto min-content'){
@@ -94,6 +105,76 @@ diesselH2.addEventListener("click", function(){
     
 })
 
+palmaH2.addEventListener("click", function(){
+    if (getComputedStyle(palma).getPropertyValue('--grid-rows').trim() === '100% auto auto'){
+
+        filas = getComputedStyle(general).gridTemplateRows.split(' ') 
+        filas[4] = "40%"
+        general.style.gridTemplateRows = filas.join(' ');
+
+        for (i=5;i<7;i++){
+            flechas[i].classList.remove("bx-chevron-up")
+            flechas[i].classList.add("bx-chevron-down")
+        }
+
+        palma.style.setProperty('--grid-rows', 'min-content auto')
+        setTimeout(() => {
+            costoPalma.style.setProperty('--display-state', 'grid');
+        }, 250);
+        
+    }else{
+        filas = getComputedStyle(general).gridTemplateRows.split(' ') 
+        filas[4] = "10%"
+        general.style.gridTemplateRows = filas.join(' ');
+
+        for (i=5;i<7;i++){
+            flechas[i].classList.add("bx-chevron-up")
+            flechas[i].classList.remove("bx-chevron-down")
+        }
+        palma.style.setProperty('--grid-rows', '100% auto auto')
+        costoPalma.style.setProperty('--display-state', 'none');
+    }
+    
+    
+})
+
+recuentoH2.addEventListener("click", function(){
+    if (getComputedStyle(recuento).getPropertyValue('--grid-rows').trim() === '100% auto auto'){
+
+        filas = getComputedStyle(general).gridTemplateRows.split(' ') 
+        filas[5] = "100%"
+        general.style.gridTemplateRows = filas.join(' ');
+
+        for (i=7;i<9;i++){
+            flechas[i].classList.remove("bx-chevron-up")
+            flechas[i].classList.add("bx-chevron-down")
+        }
+
+        recuento.style.setProperty('--grid-rows', 'min-content auto')
+        recuento.style.setProperty('--margin-bottom', '5%');
+        setTimeout(() => {
+            recuentoSummary.style.setProperty('--display-state', 'grid');
+            recuentoFecha.style.setProperty('--display-state', 'flex');
+        }, 250);
+        
+    }else{
+        filas = getComputedStyle(general).gridTemplateRows.split(' ') 
+        filas[5] = "10%"
+        general.style.gridTemplateRows = filas.join(' ');
+
+        for (i=7;i<9;i++){
+            flechas[i].classList.add("bx-chevron-up")
+            flechas[i].classList.remove("bx-chevron-down")
+        }
+        recuento.style.setProperty('--grid-rows', '100% auto auto')
+        recuento.style.setProperty('--margin-bottom', '0%');
+        recuentoSummary.style.setProperty('--display-state', 'none');
+        recuentoFecha.style.setProperty('--display-state', 'none');
+    }
+    
+    
+})
+
 for (i=0;i<botones.length;i++){
     botones[i].addEventListener("click", function(){
         botonSonido.play()
@@ -121,9 +202,9 @@ botonAñadir.addEventListener("click", function(){
     eventoAparecer(contTarjetas)
 
     if (on == 0){
-        oscuro()
+        oscuro(1)
     }else{
-        claro()
+        claro(1)
     }
 
     contTarjetas += 1
@@ -157,9 +238,9 @@ function eventoDuplicar(n){
         });
 
         if (on == 0){
-            oscuro()
+            oscuro(1)
         }else{
-            claro()
+            claro(1)
         }
 
         eventoSuma()
@@ -209,12 +290,12 @@ var sum = 0
 
 function eventoSuma() {
     sum = 0
-    costoPago.textContent = formatNumber(+sum + Number(inputDiessel.value))+" HNL"
+    costoPago.textContent = formatNumber(+sum + Number(inputDiessel.value) + Number(costoPalmaTotal))+" HNL"
     for(i=0;i<inputSalario.length;i++){
         sum += Number(inputSalario[i].value) || 0;
-        costoPago.textContent = formatNumber(+sum + Number(inputDiessel.value))+" HNL";
+        costoPago.textContent = formatNumber(+sum + Number(inputDiessel.value) + Number(costoPalmaTotal))+" HNL";
     }
-    
+    updateSummary()
 }
 
 function formatNumber(num) {
@@ -244,4 +325,103 @@ botonRestarDiessel.addEventListener("click", function(){
         inputDiessel.value = 0
     }
     calcularDiessel(inputDiessel)
+})
+
+for (i=0;i<3;i++){
+    sumarPalma(i)
+    restarPalma(i)
+}
+
+function sumarPalma(n) {
+    botonSumarPalma[n].addEventListener("click", function(){
+        if(n == 0){
+            inputPalma[n].value = Number(inputPalma[n].value)+1000
+        }else{
+            if (n == 1){
+                inputPalma[n].value = Number(inputPalma[n].value)+100
+            }else{
+                inputPalma[n].value = Number(inputPalma[n].value)+3
+            }
+        }
+
+        if(inputPalma[n].value >9999){
+            inputPalma[n].value = 9999
+        }
+        calcularPalma()
+    })
+}
+
+function restarPalma(n) {
+    botonRestarPalma[n].addEventListener("click", function(){
+        if(n == 0){
+            inputPalma[n].value = Number(inputPalma[n].value)-1000
+            
+        }else{
+            if (n == 1){
+                inputPalma[n].value = Number(inputPalma[n].value)-100
+            }else{
+                inputPalma[n].value = Number(inputPalma[n].value)-3
+            }
+        }
+        if(inputPalma[n].value <0){
+            inputPalma[n].value = 0
+        }
+        calcularPalma()
+    })
+
+}
+
+function slice4(element){
+    if (element.value.length > 4) {
+        element.value = element.value.slice(0, 4);
+    }
+}
+
+let costoPalmaTotal = 0
+let gananciaPalma = 0
+
+function calcularPalma(){
+    gananciaPalma = Number(inputPalma[0].value)*Number(inputPalma[2].value)
+    gananciaPalma -= Number(inputPalma[2].value)*Number(inputPalma[1].value)
+    costoPalmaTotal = Number(inputPalma[2].value)*Number(inputPalma[1].value)
+    totalPalma.textContent = gananciaPalma+ " HNL (-"+costoPalmaTotal+")"
+    eventoSuma()
+}
+
+function updateSummary(){
+    recuentoItemB[0].textContent = 0+sum+" HNL"
+    recuentoItemB[1].textContent = 0+Number(inputDiessel.value)+" HNL"
+    recuentoItemB[2].textContent = 0+Number(inputPalma[0].value)+" HNL"
+    recuentoItemB[3].textContent = 0+Number(inputPalma[1].value)+" HNL"
+    recuentoItemB[4].textContent = 0+Number(inputPalma[2].value)+" T"
+    recuentoItemB[5].textContent = 0+costoPalmaTotal+" HNL"
+    recuentoItemB[6].textContent = costoPago.textContent
+    recuentoItemB[7].textContent = gananciaPalma-Number(costoPago.textContent)+" HNL"
+}
+
+function mostrarFecha() {
+    var hoy = new Date();
+    var dia = hoy.getDate().toString().padStart(2, '0');
+    var mes = (hoy.getMonth() + 1).toString().padStart(2, '0'); // Los meses empiezan desde 0
+    var anio = hoy.getFullYear();
+    var fechaFormateada = dia + '/' + mes + '/' + anio;
+    recuentoFechaH3.textContent = fechaFormateada
+}
+
+mostrarFecha()
+
+function capturar() {
+    html2canvas(document.querySelector('.recuento')).then(canvas => {
+        var imgData = canvas.toDataURL('image/png');
+        var link = document.createElement('a');
+        link.href = imgData;
+        link.download = 'recuento.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+}
+
+enviarCorreo.addEventListener("click", function(){
+    capturar()
 })

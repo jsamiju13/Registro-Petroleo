@@ -1,11 +1,22 @@
 let general = document.querySelector(".general")
+
 let trabajadores = document.querySelector(".trabajadores")
-let costo = document.querySelector(".costo")
 let botonAñadir = document.querySelector(".botonAñadir")
+
+let costo = document.querySelector(".costo")
+
 let diessel = document.querySelector(".diessel")
 let costoDiessel = document.querySelector(".costoDiessel")
 
-general.style.setProperty('--grid-rows', '10% 10% min-content 10%');
+let palma = document.querySelector(".palma")
+let costoPalma = document.querySelector(".costoPalma")
+
+let recuento =document.querySelector(".recuento")
+let recuentoSummary = document.querySelector(".recuentoSummary")
+let recuentoFecha = document.querySelector(".recuentoFecha")
+let recuentoFechaH3 = document.querySelector(".recuentoFecha h3")
+
+general.style.setProperty('--grid-rows', '10% 10% min-content 10% 10% 10%');
 
 botonAñadir.style.setProperty('--display-state', 'none');
 trabajadores.style.setProperty('--grid-rows', '100% auto min-content')
@@ -13,6 +24,13 @@ trabajadores.style.setProperty('--grid-rows', '100% auto min-content')
 diessel.style.setProperty('--grid-rows', '100% auto');
 costoDiessel.style.setProperty('--display-state', 'none');
 
+palma.style.setProperty('--grid-rows', '100% auto auto');
+costoPalma.style.setProperty('--display-state', 'none');
+
+recuento.style.setProperty('--grid-rows', '100% auto auto');
+recuento.style.setProperty('--margin-bottom', '0%');
+recuentoSummary.style.setProperty('--display-state', 'none');
+recuentoFecha.style.setProperty('--display-state', 'none');
 
     function buildTarjeta(contTarjetas){
 
@@ -63,8 +81,8 @@ costoDiessel.style.setProperty('--display-state', 'none');
         inputS.type = 'number';
         inputS.placeholder = "Salario del Trabajador";
         inputS.oninput = function() {
-            if (this.value.length > 7) {
-                this.value = this.value.slice(0, 7);
+            if (this.value.length > 4) {
+                this.value = this.value.slice(0, 4);
             }
             eventoSuma()
         };
@@ -84,5 +102,3 @@ costoDiessel.style.setProperty('--display-state', 'none');
         
         
 }
-
-
