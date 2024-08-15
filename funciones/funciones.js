@@ -287,13 +287,16 @@ function eventoAparecer(n){
 }
 
 var sum = 0
+let costoPagoNum = 0
 
 function eventoSuma() {
     sum = 0
-    costoPago.textContent = formatNumber(+sum + Number(inputDiessel.value) + Number(costoPalmaTotal))+" HNL"
+    costoPagoNum = Number(+sum + Number(inputDiessel.value) + Number(costoPalmaTotal))
+    costoPago.innerHTML = "<span>" + formatNumber(costoPagoNum) +"</span> HNL";
     for(i=0;i<inputSalario.length;i++){
         sum += Number(inputSalario[i].value) || 0;
-        costoPago.textContent = formatNumber(+sum + Number(inputDiessel.value) + Number(costoPalmaTotal))+" HNL";
+        costoPagoNum = Number(+sum + Number(inputDiessel.value) + Number(costoPalmaTotal))
+        costoPago.innerHTML = "<span>" + formatNumber(costoPagoNum) +"</span> HNL";
     }
     updateSummary()
 }
@@ -378,25 +381,34 @@ function slice4(element){
 }
 
 let costoPalmaTotal = 0
+let costoCamionPalma = 0
 let gananciaPalma = 0
+
 
 function calcularPalma(){
     gananciaPalma = Number(inputPalma[0].value)*Number(inputPalma[2].value)
-    gananciaPalma -= Number(inputPalma[2].value)*Number(inputPalma[1].value)
+    costoCamionPalma = Number(inputPalma[2].value)*Number(inputPalma[1].value)
     costoPalmaTotal = Number(inputPalma[2].value)*Number(inputPalma[1].value)
-    totalPalma.textContent = gananciaPalma+ " HNL (-"+costoPalmaTotal+")"
+    totalPalma.innerHTML = "<span>" + gananciaPalma + " </span> HNL <span>(-" + costoPalmaTotal + ")</span>"
     eventoSuma()
 }
 
 function updateSummary(){
-    recuentoItemB[0].textContent = 0+sum+" HNL"
-    recuentoItemB[1].textContent = 0+Number(inputDiessel.value)+" HNL"
-    recuentoItemB[2].textContent = 0+Number(inputPalma[0].value)+" HNL"
-    recuentoItemB[3].textContent = 0+Number(inputPalma[1].value)+" HNL"
-    recuentoItemB[4].textContent = 0+Number(inputPalma[2].value)+" T"
-    recuentoItemB[5].textContent = 0+costoPalmaTotal+" HNL"
-    recuentoItemB[6].textContent = costoPago.textContent
-    recuentoItemB[7].textContent = gananciaPalma-Number(costoPago.textContent)+" HNL"
+    console.log(costoPagoNum)
+    recuentoItemB[0].innerHTML = "<span>" + sum+ " </span> HNL"
+    recuentoItemB[1].innerHTML = "<span>" + Number(inputDiessel.value - 0) + " </span> HNL"
+    recuentoItemB[2].innerHTML = "<span>" + Number(inputPalma[0].value - 0) + " </span> HNL"
+    recuentoItemB[3].innerHTML = "<span>" + Number(inputPalma[1].value - 0) + " </span> HNL"
+    recuentoItemB[4].innerHTML = "<span>" + Number(inputPalma[2].value - 0) + " </span> T"
+    recuentoItemB[5].innerHTML = "<span>" + Number(costoPalmaTotal - 0) + " </span> HNL"
+    recuentoItemB[6].innerHTML = "<span>" + Number(costoPagoNum - 0) + " </span> HNL"
+    recuentoItemB[7].innerHTML = "<span>" + Number(gananciaPalma - costoPagoNum) + " </span> HNL"
+
+    if (on == 0){
+        oscuro(1)
+    }else{
+        claro(1)
+    }
 }
 
 function mostrarFecha() {

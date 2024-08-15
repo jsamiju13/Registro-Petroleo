@@ -6,6 +6,7 @@ let tarjetaIcon = document.querySelectorAll(".tarjeta i")
 let modo = document.querySelector(".modo")
 let icon = document.querySelectorAll("i")
 let inputes = document.querySelectorAll("input")
+let span = document.querySelectorAll("span")
 
 modo.addEventListener("click", function(){
     if (on == 1){
@@ -34,6 +35,7 @@ function claro(n){
     inputes = document.querySelectorAll("input")
     fondo.style.setProperty('--bg-color','#F8FAFC')
     titulo.style.setProperty('--text-color','#0F172A')
+    span = document.querySelectorAll("span")
 
     trabajadores.style.setProperty('--bg-color','#FFFFFF')
     trabajadores.style.setProperty('--border-color','#dee1e3')
@@ -75,6 +77,15 @@ function claro(n){
         
     }
 
+    for (i=0;i<span.length;i++){
+        span[i].style.setProperty('--text-color','#ff3341')
+        
+    }
+    span[1].style.setProperty('--text-color','#0cab51')
+    span[5].style.setProperty('--text-color','#1a1fad')
+    span[7].style.setProperty('--text-color','#1a1fad')
+    span[10].style.setProperty('--text-color','#0cab51')
+
     for (i=0;i<inputes.length;i++){
         inputes[i].style.setProperty('--placeholder-color', "#a2a5a6");
         inputes[i].style.setProperty('--disabled-bg-color', "#ebf5ff");
@@ -82,7 +93,7 @@ function claro(n){
         inputes[i].style.setProperty('--disabled-text-color', "#a2a5a6");
         inputes[i].style.setProperty('--box-shadow', "4px 4px 4px rgba(0, 0, 0, 0.3)");
     }
-
+/*#52ffb1*/
     if (n == 1){
 
     for (i=0;i<botonGuardar.length;i++){
@@ -115,6 +126,7 @@ function oscuro(n){
     inputes = document.querySelectorAll("input")
     fondo.style.setProperty('--bg-color','#0F172A')
     titulo.style.setProperty('--text-color','#FFFFFF')
+    span = document.querySelectorAll("span")
 
     trabajadores.style.setProperty('--bg-color','#1E293B')
     trabajadores.style.setProperty('--border-color','#475569')
@@ -151,6 +163,11 @@ function oscuro(n){
 
     for (i=0;i<icon.length;i++){
         icon[i].style.setProperty('--text-color', '#FFFFFF');
+    }
+
+    for (i=0;i<span.length;i++){
+        span[i].style.setProperty('--text-color','#ff3341')
+        
     }
 
     for (i=0;i<inputes.length;i++){

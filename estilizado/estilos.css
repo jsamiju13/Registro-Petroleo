@@ -12,6 +12,10 @@ i{
     color: var(--text-color);
 }
 
+span{
+    color: var(--text-color);
+}
+
 button:active{
     transform: scale(0.9);
 }
