@@ -169,6 +169,10 @@ function oscuro(n){
         span[i].style.setProperty('--text-color','#ff3341')
         
     }
+    span[1].style.setProperty('--text-color','#0cab51')
+    span[5].style.setProperty('--text-color','#1a1fad')
+    span[7].style.setProperty('--text-color','#1a1fad')
+    span[10].style.setProperty('--text-color','#0cab51')
 
     for (i=0;i<inputes.length;i++){
         inputes[i].style.setProperty('--placeholder-color', "#c0c1c2");
