@@ -39,23 +39,23 @@ function claro(n){
 
     trabajadores.style.setProperty('--bg-color','#FFFFFF')
     trabajadores.style.setProperty('--border-color','#dee1e3')
-    trabajadores.style.setProperty('--box-shadow', "10px 10px 10px rgba(0, 0, 0, 0.3)");
+    trabajadores.style.setProperty('--box-shadow', "5px 5px 5px rgba(0, 0, 0, 0.3)");
 
     costo.style.setProperty('--bg-color','#FFFFFF')
     costo.style.setProperty('--border-color','#dee1e3')
-    costo.style.setProperty('--box-shadow', "10px 10px 10px rgba(0, 0, 0, 0.3)");
+    costo.style.setProperty('--box-shadow', "5px 5px 5px rgba(0, 0, 0, 0.3)");
 
     diessel.style.setProperty('--bg-color','#FFFFFF')
     diessel.style.setProperty('--border-color','#dee1e3')
-    diessel.style.setProperty('--box-shadow', "10px 10px 10px rgba(0, 0, 0, 0.3)");
+    diessel.style.setProperty('--box-shadow', "5px 5px 5px rgba(0, 0, 0, 0.3)");
 
     palma.style.setProperty('--bg-color','#FFFFFF')
     palma.style.setProperty('--border-color','#dee1e3')
-    palma.style.setProperty('--box-shadow', "10px 10px 10px rgba(0, 0, 0, 0.3)");
+    palma.style.setProperty('--box-shadow', "5px 5px 5px rgba(0, 0, 0, 0.3)");
 
     recuento.style.setProperty('--bg-color','#FFFFFF')
     recuento.style.setProperty('--border-color','#dee1e3')
-    recuento.style.setProperty('--box-shadow', "10px 10px 10px rgba(0, 0, 0, 0.3)");
+    recuento.style.setProperty('--box-shadow', "5px 5px 5px rgba(0, 0, 0, 0.3)");
 
     
 
@@ -93,7 +93,7 @@ function claro(n){
         inputes[i].style.setProperty('--disabled-text-color', "#a2a5a6");
         inputes[i].style.setProperty('--box-shadow', "4px 4px 4px rgba(0, 0, 0, 0.3)");
     }
-/*#52ffb1*/
+
     if (n == 1){
 
     for (i=0;i<botonGuardar.length;i++){
@@ -115,7 +115,7 @@ function claro(n){
     for (i=0;i<tarjeta.length;i++){
         tarjeta[i].style.setProperty('--bg-color', '#F8FAFC');
         tarjeta[i].style.setProperty('--border-color','#dee1e3')
-        tarjeta[i].style.setProperty('--box-shadow', "7px 7px 7px rgba(0, 0, 0, 0.3)");
+        tarjeta[i].style.setProperty('--box-shadow', "5px 5px 5px rgba(0, 0, 0, 0.3)");
     }
 
     }
@@ -130,23 +130,23 @@ function oscuro(n){
 
     trabajadores.style.setProperty('--bg-color','#1E293B')
     trabajadores.style.setProperty('--border-color','#475569')
-    trabajadores.style.setProperty('--box-shadow', "10px 10px 10px rgba(255, 255, 255, 0.3)");
+    trabajadores.style.setProperty('--box-shadow', "5px 5px 5px rgba(255, 255, 255, 0.3)");
 
     costo.style.setProperty('--bg-color','#1E293B')
     costo.style.setProperty('--border-color','#475569')
-    costo.style.setProperty('--box-shadow', "10px 10px 10px rgba(255, 255, 255, 0.3)");
+    costo.style.setProperty('--box-shadow', "5px 5px 5px rgba(255, 255, 255, 0.3)");
 
     diessel.style.setProperty('--bg-color','#1E293B')
     diessel.style.setProperty('--border-color','#475569')
-    diessel.style.setProperty('--box-shadow', "10px 10px 10px rgba(255, 255, 255, 0.3)");
+    diessel.style.setProperty('--box-shadow', "5px 5px 5px rgba(255, 255, 255, 0.3)");
 
     palma.style.setProperty('--bg-color','#1E293B')
     palma.style.setProperty('--border-color','#475569')
-    palma.style.setProperty('--box-shadow', "10px 10px 10px rgba(255, 255, 255, 0.3)");
+    palma.style.setProperty('--box-shadow', "5px 5px 5px rgba(255, 255, 255, 0.3)");
 
     recuento.style.setProperty('--bg-color','#1E293B')
     recuento.style.setProperty('--border-color','#475569')
-    recuento.style.setProperty('--box-shadow', "10px 10px 10px rgba(255, 255, 255, 0.3)");
+    recuento.style.setProperty('--box-shadow', "5px 5px 5px rgba(255, 255, 255, 0.3)");
 
     for (i=0;i<textoH2.length;i++){
         textoH2[i].style.setProperty('--text-color','#FFFFFF')
@@ -203,7 +203,7 @@ function oscuro(n){
     for (i=0;i<tarjeta.length;i++){
         tarjeta[i].style.setProperty('--bg-color', '#1E293B');
         tarjeta[i].style.setProperty('--border-color','#475569')
-        tarjeta[i].style.setProperty('--box-shadow', "7px 7px 7px rgba(255, 255, 255, 0.3)");
+        tarjeta[i].style.setProperty('--box-shadow', "5px 5px 5px rgba(255, 255, 255, 0.3)");
     }
 }
 }
