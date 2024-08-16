@@ -170,8 +170,8 @@ function oscuro(n){
         
     }
     span[1].style.setProperty('--text-color','#0cab51')
-    span[5].style.setProperty('--text-color','#1a1fad')
-    span[7].style.setProperty('--text-color','#1a1fad')
+    span[5].style.setProperty('--text-color','#007BFF')
+    span[7].style.setProperty('--text-color','#007BFF')
     span[10].style.setProperty('--text-color','#0cab51')
 
     for (i=0;i<inputes.length;i++){

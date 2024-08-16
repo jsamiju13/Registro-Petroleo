@@ -269,14 +269,7 @@ function eventoEdicion(n){
 function eventoEliminar(n){
     botonEliminar[n].addEventListener("click", function(){
         botonSonido.play()
-        tarjeta[n].classList.add('oculta');
-        tarjeta[n].classList.remove('vista');
-        setTimeout(() => {
-            tarjeta[n].classList.add('eliminada');
-            console.log("quedan ",contTarjetas," tarjetas", " y ", n)
-        }, 500);
-        inputSalario[n].value = 0
-        eventoSuma()
+        sweet(n)
     })
 }
 
@@ -395,7 +388,6 @@ function calcularPalma(){
 }
 
 function updateSummary(){
-    console.log(costoPagoNum)
     recuentoItemB[0].innerHTML = "<span>" + sum+ " </span> HNL"
     recuentoItemB[1].innerHTML = "<span>" + Number(inputDiessel.value - 0) + " </span> HNL"
     recuentoItemB[2].innerHTML = "<span>" + Number(inputPalma[0].value - 0) + " </span> HNL"
@@ -422,3 +414,37 @@ function mostrarFecha() {
 }
 
 mostrarFecha()
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
+});
+
+function sweet(n){
+    Swal.fire({
+    title: "Atención",
+    text: "Estás seguro? esta acción no se puede deshacer",
+    icon: "info",
+    showCancelButton: true,
+    confirmButtonText: "Confirmar",
+    cancelButtonText: "Cancelar",
+    showCloseButton: true
+    }).then((result) => {
+    if (result.isConfirmed) {
+        tarjeta[n].classList.add('oculta');
+        tarjeta[n].classList.remove('vista');
+        setTimeout(() => {
+            tarjeta[n].classList.add('eliminada');
+        }, 500);
+        inputSalario[n].value = 0
+        eventoSuma()
+    }
+    });
+};

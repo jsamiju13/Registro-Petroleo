@@ -10,9 +10,15 @@ function enviarCorreo() {
 
     emailjs.send('service_2rx8ijq', 'template_6bbsts6', templateParams)
         .then(function(response) {
-            alert('Correo enviado!', response.status, response.text);
+            Toast.fire({
+                icon: "success",
+                title: "Correo enviado correctamente"
+            });
         }, function(error) {
-            alert('Error al enviar el correo:', error);
+            Toast.fire({
+                icon: "error",
+                title: "ocurrió un error inesperado"
+            });
         });
 }
 
