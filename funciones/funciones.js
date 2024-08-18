@@ -3,10 +3,10 @@ let botonSonido =document.querySelector(".botonPlay")
 let botones = document.querySelectorAll("button")
 let flechas = document.querySelectorAll("article i")
 
-let botonGuardar 
-let botonEditar 
-let botonEliminar
-let botonDuplicar
+let botonGuardar = document.querySelectorAll(".botonGuardar")
+let botonEditar = document.querySelectorAll(".botonEditar")
+let botonEliminar = document.querySelectorAll(".botonEliminar")
+let botonDuplicar = document.querySelectorAll(".botonDuplicar")
 
 let filas
 let trabajadoresH2 = document.querySelector(".trabajadores article")
@@ -34,6 +34,11 @@ let recuentoItemA = document.querySelectorAll(".recuento .itemA")
 let recuentoItemB = document.querySelectorAll(".recuento .itemB")
 let enviarCorreoBoton = document.querySelector(".recuento .enviarCorreo")
 let tomarCapBoton = document.querySelector(".recuento .tomarCap")
+
+let plegar = document.querySelector(".plegar")
+let plegarBotones = document.querySelectorAll(".plegar button")
+let saveData = document.querySelector(".saveData")
+let resetData = document.querySelector(".resetData")
 
 trabajadoresH2.addEventListener("click", function(){
     if (getComputedStyle(trabajadores).getPropertyValue('--grid-rows').trim() === '100% auto min-content'){
@@ -176,13 +181,41 @@ recuentoH2.addEventListener("click", function(){
     
 })
 
+plegar.style.setProperty('--width-state', '10vw');
+plegar.style.setProperty('--height-state', '4vh');
+plegarBotones[0].style.setProperty('--display-state', 'none');
+plegarBotones[1].style.setProperty('--display-state', 'none');
+plegar.addEventListener("click", function(){
+    
+    if(plegar.classList.contains("cerrado")){
+        plegar.style.setProperty('--width-state', '38vw');
+        plegar.style.setProperty('--height-state', '6vh');
+        setTimeout(() => {
+            plegarBotones[0].style.setProperty('--display-state', 'auto');
+            plegarBotones[1].style.setProperty('--display-state', 'auto');
+        }, 250);
+        plegar.classList.remove("cerrado")
+    }else{
+        plegar.style.setProperty('--width-state', '10vw');
+        plegar.style.setProperty('--height-state', '4vh');
+        plegarBotones[0].style.setProperty('--display-state', 'none');
+        plegarBotones[1].style.setProperty('--display-state', 'none');
+        plegar.classList.add("cerrado")
+    }
+})
+
 for (i=0;i<botones.length;i++){
     botones[i].addEventListener("click", function(){
         botonSonido.play()
     });
 }
 var on = 1
-let contTarjetas = 0
+
+eventoEdicion(contTarjetas)  
+eventoEliminar(contTarjetas)
+eventoDuplicar(contTarjetas)
+eventoAparecer(contTarjetas)
+contTarjetas += 1
 
 botonAñadir.addEventListener("click", function(){
     buildTarjeta(contTarjetas+1)
@@ -285,7 +318,7 @@ let costoPagoNum = 0
 
 function eventoSuma() {
     sum = 0
-    costoPagoNum = Number(+sum + Number(inputDiessel.value) + Number(costoPalmaTotal))
+    costoPagoNum = Number(Number(sum) + Number(inputDiessel.value) + Number(costoPalmaTotal))
     costoPago.innerHTML = "<span>" + formatNumber(costoPagoNum) +"</span> HNL";
     for(i=0;i<inputSalario.length;i++){
         sum += Number(inputSalario[i].value) || 0;
@@ -388,7 +421,8 @@ function calcularPalma(){
 }
 
 function updateSummary(){
-    recuentoItemB[0].innerHTML = "<span>" + sum+ " </span> HNL"
+    
+    recuentoItemB[0].innerHTML = "<span>" + sum + " </span> HNL"
     recuentoItemB[1].innerHTML = "<span>" + Number(inputDiessel.value - 0) + " </span> HNL"
     recuentoItemB[2].innerHTML = "<span>" + Number(inputPalma[0].value - 0) + " </span> HNL"
     recuentoItemB[3].innerHTML = "<span>" + Number(inputPalma[1].value - 0) + " </span> HNL"
@@ -414,6 +448,30 @@ function mostrarFecha() {
 }
 
 mostrarFecha()
+
+function guardarDatos(){
+    localStorage.setItem('miDato', sum );
+}
+
+function setearDatos(){
+    sum = localStorage.getItem("miDato")
+    console.log(sum)
+    eventoSuma()
+}
+
+saveData.addEventListener("click", function(){
+    Toast.fire({
+        icon: "info",
+        title: "Información guardada con éxito"
+    });
+})
+
+resetData.addEventListener("click", function(){
+    Toast.fire({
+        icon: "info",
+        title: "Información Reiniciada con éxito"
+    });
+})
 
 const Toast = Swal.mixin({
     toast: true,

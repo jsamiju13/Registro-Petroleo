@@ -84,7 +84,6 @@ recuentoFecha.style.setProperty('--display-state', 'none');
             if (this.value.length > 4) {
                 this.value = this.value.slice(0, 4);
             }
-            eventoSuma()
         };
         inputS.disabled = true
 
@@ -102,3 +101,7 @@ recuentoFecha.style.setProperty('--display-state', 'none');
         
         
 }
+
+let contTarjetas = 0
+buildTarjeta(contTarjetas+1)
+

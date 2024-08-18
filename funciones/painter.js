@@ -37,6 +37,10 @@ function claro(n){
     titulo.style.setProperty('--text-color','#0F172A')
     span = document.querySelectorAll("span")
 
+    plegar.style.setProperty('--bg-color','#FFFFFF')
+    plegar.style.setProperty('--border-color','#dee1e3')
+    plegar.style.setProperty('--box-shadow', "5px 5px 5px rgba(0, 0, 0, 0.3)");
+
     trabajadores.style.setProperty('--bg-color','#FFFFFF')
     trabajadores.style.setProperty('--border-color','#dee1e3')
     trabajadores.style.setProperty('--box-shadow', "5px 5px 5px rgba(0, 0, 0, 0.3)");
@@ -127,6 +131,10 @@ function oscuro(n){
     fondo.style.setProperty('--bg-color','#0F172A')
     titulo.style.setProperty('--text-color','#FFFFFF')
     span = document.querySelectorAll("span")
+
+    plegar.style.setProperty('--bg-color','#1E293B')
+    plegar.style.setProperty('--border-color','#475569')
+    plegar.style.setProperty('--box-shadow', "5px 5px 5px rgba(255, 255, 255, 0.3)");
 
     trabajadores.style.setProperty('--bg-color','#1E293B')
     trabajadores.style.setProperty('--border-color','#475569')

@@ -59,6 +59,36 @@ button:active{
     font-size: 7vw;
 }
 
+.plegar{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top: 92%;
+    width: var(--width-state);
+    height: var(--height-state);
+    margin: 1% 1%;
+    padding-right: 3%;
+    border-style: solid;
+    border-radius: 1.5vh;
+    box-shadow: var(--box-shadow);
+    border-color: var(--border-color);
+    margin-bottom: 4%;
+    background-color: var(--bg-color);
+    font-size: 10vw;
+}
+
+.plegar button{
+    display: var(--display-state);
+    margin: 1% 1%;
+    border-style: none;
+    border-radius: 1.5vh;
+    margin-bottom: 4%;
+    background-color: var(--bg-color);
+    font-size: 8vw;
+}
+
+
 .titulo{
     display: grid;
     grid-template-columns: auto;
