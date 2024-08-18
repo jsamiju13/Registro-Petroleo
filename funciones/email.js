@@ -4,7 +4,7 @@
 
 function enviarCorreo() {
     var templateParams = {
-        user_email: 'fernando.sierra950@outlook.com',
+        user_email: 'fernando.sierra744@gmail.com',
         message: recuentoSummary.textContent,
     };
 
