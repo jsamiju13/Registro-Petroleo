@@ -54,10 +54,10 @@
 
             <div class="costoDiessel">
                 <button id="sumarDiessel"><i class='bx bxs-up-arrow' ></i></button>
-                <input type="number" placeholder="Lempiras en Diessel" oninput="calcularDiessel(this)"></input>
+                <input type="number" placeholder="Lempiras en Diessel" oninput="slice4(this)"></input>
                 <button id="restarDiessel"><i class='bx bxs-down-arrow' ></i></button>
             </div>
-            
+
         </section>
 
         <section class="palma">
@@ -70,20 +70,18 @@
 
             <div class="costoPalma">
                 <button class="sumarPalma"><i class=' bx bxs-chevron-up' ></i></button>
-                <input type="number" placeholder="Precio de la tonelada" oninput="slice4(this),calcularPalma()"></input>
+                <input type="number" placeholder="Precio de la tonelada" oninput="slice4(this)"></input>
                 <button class="restarPalma"><i class=' bx bxs-chevron-down' ></i></button>
 
                 <button class="sumarPalma"><i class=' bx bxs-chevron-up' ></i></button>
-                <input type="number" placeholder="costo/T del camion" oninput="slice4(this),calcularPalma()"></input>
+                <input type="number" placeholder="costo/T del camion" oninput="slice4(this)"></input>
                 <button class="restarPalma"><i class=' bx bxs-chevron-down' ></i></button>
 
                 <button class="sumarPalma"><i class=' bx bxs-chevron-up' ></i></button>
-                <input type="number" placeholder="Cantidad de Toneladas" oninput="slice4(this),calcularPalma()"> </input>
+                <input type="text" placeholder="Cantidad de Toneladas" oninput="slice6(this)"> </input>
                 <button class="restarPalma"><i class=' bx bxs-chevron-down' ></i></button>
 
-                <br>
-
-                <article>
+                <article class="art">
                     
                         <h3><span>0</span> HNL <span>(-0)</span></h3>
                     
@@ -138,7 +136,6 @@
         <button class="modo"><i class='bx bxs-sun' ></i></button>
         <div class="plegar cerrado">
             <i class='bx bx-chevron-right' ></i>
-            <button class="saveData"><i class='bx bxs-save'></i></button>
             <button class="resetData"><i class='bx bx-reset' ></i></button>
         </div>
         

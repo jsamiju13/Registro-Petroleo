@@ -36,3 +36,5 @@ function capturar() {
 tomarCapBoton.addEventListener('click', capturar);
 
 enviarCorreoBoton.addEventListener('click', enviarCorreo);
+
+setearDatos()

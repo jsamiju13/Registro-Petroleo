@@ -39,7 +39,6 @@ recuentoFecha.style.setProperty('--display-state', 'none');
     const card = document.createElement('section');
     card.className = 'tarjeta';
 
-    // Crear botones con imágenes
     
         const buttonD = document.createElement('button');
         buttonD.className = 'botonDuplicar';
@@ -102,6 +101,6 @@ recuentoFecha.style.setProperty('--display-state', 'none');
         
 }
 
-let contTarjetas = 0
+var contTarjetas = 0
 buildTarjeta(contTarjetas+1)
 

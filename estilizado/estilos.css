@@ -307,11 +307,17 @@ button:active{
 .costoPalma{
     display: var(--display-state);
     grid-template-columns: auto auto auto;
-    grid-template-rows: min-content auto min-content;
+    grid-template-rows: min-content min-content min-content min-content;
+    max-width: 100%;
     align-items: center;
     align-content: center;
     justify-items: center;
+    text-align: center;
     gap: 5%;
+}
+
+.art{
+    grid-column: 1 / span 3;
 }
 
 .palma h2{
@@ -322,6 +328,7 @@ button:active{
 .palma h3{
     font-size: 2.3vh;
     color: var(--text-color);
+
 }
 
 .palma button{

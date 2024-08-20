@@ -87,7 +87,6 @@ diesselH2.addEventListener("click", function(){
             flechas[i].classList.add("bx-chevron-down")
         }
         flechas[2].classList.remove("bx-chevron-down")
-
         diessel.style.setProperty('--grid-rows', 'min-content auto')
         setTimeout(() => {
             costoDiessel.style.setProperty('--display-state', 'grid');
@@ -103,7 +102,6 @@ diesselH2.addEventListener("click", function(){
             flechas[i].classList.remove("bx-chevron-down")
         }
         flechas[2].classList.remove("bx-chevron-up")
-
         diessel.style.setProperty('--grid-rows', '100% auto')
             costoDiessel.style.setProperty('--display-state', 'none');
     }
@@ -184,22 +182,19 @@ recuentoH2.addEventListener("click", function(){
 plegar.style.setProperty('--width-state', '10vw');
 plegar.style.setProperty('--height-state', '4vh');
 plegarBotones[0].style.setProperty('--display-state', 'none');
-plegarBotones[1].style.setProperty('--display-state', 'none');
 plegar.addEventListener("click", function(){
     
     if(plegar.classList.contains("cerrado")){
-        plegar.style.setProperty('--width-state', '38vw');
+        plegar.style.setProperty('--width-state', '18vw');
         plegar.style.setProperty('--height-state', '6vh');
         setTimeout(() => {
             plegarBotones[0].style.setProperty('--display-state', 'auto');
-            plegarBotones[1].style.setProperty('--display-state', 'auto');
         }, 250);
         plegar.classList.remove("cerrado")
     }else{
         plegar.style.setProperty('--width-state', '10vw');
         plegar.style.setProperty('--height-state', '4vh');
         plegarBotones[0].style.setProperty('--display-state', 'none');
-        plegarBotones[1].style.setProperty('--display-state', 'none');
         plegar.classList.add("cerrado")
     }
 })
@@ -210,7 +205,6 @@ for (i=0;i<botones.length;i++){
     });
 }
 var on = 1
-
 eventoEdicion(contTarjetas)  
 eventoEliminar(contTarjetas)
 eventoDuplicar(contTarjetas)
@@ -218,8 +212,11 @@ eventoAparecer(contTarjetas)
 contTarjetas += 1
 
 botonAñadir.addEventListener("click", function(){
-    buildTarjeta(contTarjetas+1)
+    eventoAñadir()
+})
 
+function eventoAñadir(){
+    buildTarjeta(contTarjetas+1)
     tarjeta = document.querySelectorAll(".tarjeta")
 
     botonGuardar = document.querySelectorAll(".botonGuardar")
@@ -242,7 +239,7 @@ botonAñadir.addEventListener("click", function(){
     }
 
     contTarjetas += 1
-})
+}
 
 function eventoDuplicar(n){
     botonDuplicar[n].addEventListener("click",function(){
@@ -315,8 +312,17 @@ function eventoAparecer(n){
 
 var sum = 0
 let costoPagoNum = 0
+let costoPalmaTotal = 0
+let costoCamionPalma = 0
+let gananciaPalma = 0
 
 function eventoSuma() {
+
+    gananciaPalma = Number(inputPalma[0].value)*Number(inputPalma[2].value)
+    costoCamionPalma = Number(inputPalma[2].value)*Number(inputPalma[1].value)
+    costoPalmaTotal = Number(inputPalma[2].value)*Number(inputPalma[1].value)
+    totalPalma.innerHTML = "<span>" + gananciaPalma.toFixed(2) + " </span> HNL <span>(-" + costoPalmaTotal.toFixed(2) + ")</span>"
+
     sum = 0
     costoPagoNum = Number(Number(sum) + Number(inputDiessel.value) + Number(costoPalmaTotal))
     costoPago.innerHTML = "<span>" + formatNumber(costoPagoNum) +"</span> HNL";
@@ -325,6 +331,7 @@ function eventoSuma() {
         costoPagoNum = Number(+sum + Number(inputDiessel.value) + Number(costoPalmaTotal))
         costoPago.innerHTML = "<span>" + formatNumber(costoPagoNum) +"</span> HNL";
     }
+
     updateSummary()
 }
 
@@ -332,13 +339,6 @@ function formatNumber(num) {
     return num.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 }
 
-function calcularDiessel(element){
-    
-    if (element.value.length > 4) {
-        element.value = element.value.slice(0, 4);
-    };
-    eventoSuma()
-}
 
 botonSumarDiessel.addEventListener("click", function(){
     inputDiessel.value = Number(inputDiessel.value) +250
@@ -346,7 +346,7 @@ botonSumarDiessel.addEventListener("click", function(){
         inputDiessel.value = 9999
     }
 
-    calcularDiessel(inputDiessel)
+    slice4(inputDiessel)
 })
 
 botonRestarDiessel.addEventListener("click", function(){
@@ -354,7 +354,7 @@ botonRestarDiessel.addEventListener("click", function(){
     if (inputDiessel.value < 0){
         inputDiessel.value = 0
     }
-    calcularDiessel(inputDiessel)
+    slice4(inputDiessel)
 })
 
 for (i=0;i<3;i++){
@@ -371,13 +371,14 @@ function sumarPalma(n) {
                 inputPalma[n].value = Number(inputPalma[n].value)+100
             }else{
                 inputPalma[n].value = Number(inputPalma[n].value)+3
+                slice6(inputPalma[n])
             }
         }
 
         if(inputPalma[n].value >9999){
             inputPalma[n].value = 9999
         }
-        calcularPalma()
+        eventoSuma()
     })
 }
 
@@ -391,12 +392,14 @@ function restarPalma(n) {
                 inputPalma[n].value = Number(inputPalma[n].value)-100
             }else{
                 inputPalma[n].value = Number(inputPalma[n].value)-3
+                slice6(inputPalma[n])
             }
         }
         if(inputPalma[n].value <0){
             inputPalma[n].value = 0
         }
-        calcularPalma()
+        
+        eventoSuma()
     })
 
 }
@@ -405,18 +408,13 @@ function slice4(element){
     if (element.value.length > 4) {
         element.value = element.value.slice(0, 4);
     }
+    eventoSuma()
 }
 
-let costoPalmaTotal = 0
-let costoCamionPalma = 0
-let gananciaPalma = 0
-
-
-function calcularPalma(){
-    gananciaPalma = Number(inputPalma[0].value)*Number(inputPalma[2].value)
-    costoCamionPalma = Number(inputPalma[2].value)*Number(inputPalma[1].value)
-    costoPalmaTotal = Number(inputPalma[2].value)*Number(inputPalma[1].value)
-    totalPalma.innerHTML = "<span>" + gananciaPalma + " </span> HNL <span>(-" + costoPalmaTotal + ")</span>"
+function slice6(element){
+    if (element.value.length > 6) {
+        element.value = element.value.slice(0, 6);
+    }
     eventoSuma()
 }
 
@@ -436,6 +434,7 @@ function updateSummary(){
     }else{
         claro(1)
     }
+    guardarDatos()
 }
 
 function mostrarFecha() {
@@ -450,27 +449,71 @@ function mostrarFecha() {
 mostrarFecha()
 
 function guardarDatos(){
-    localStorage.setItem('miDato', sum );
+    let datoCantTrabajadores  = tarjeta.length
+    let datoTrabajadoresNombre = []
+    let datoTrabajadoresSalario = []
+    for (i=0;i<tarjeta.length;i++){
+        
+        if (tarjeta[i].classList.contains("eliminada")){
+            datoCantTrabajadores -= 1
+        }else{
+            datoTrabajadoresNombre.push(inputNombre[i].value)
+            datoTrabajadoresSalario.push(inputSalario[i].value)
+        }
+    }
+
+    
+
+    localStorage.setItem('datoCantTrabajadores', datoCantTrabajadores);
+    localStorage.setItem('datoTrabajadoresNombre', datoTrabajadoresNombre.join(","));
+    localStorage.setItem('datoTrabajadoresSalario', datoTrabajadoresSalario.join(","));
+
+    localStorage.setItem("datoDiessel", inputDiessel.value)
+
+    localStorage.setItem("datoPalmaPrecioT", inputPalma[0].value)
+    localStorage.setItem("datoCostoCamionT", inputPalma[1].value)
+    localStorage.setItem("datoCantPalmaT",   inputPalma[2].value)
 }
 
 function setearDatos(){
-    sum = localStorage.getItem("miDato")
-    console.log(sum)
+    contTarjetas = 0
+    tarjetas.innerHTML = ""
+
+    datoCantTrabajadores = localStorage.getItem('datoCantTrabajadores')
+    for(i=1;i<Number(datoCantTrabajadores)+1;i++){
+    eventoAñadir()
+    inputNombre[i-1].value = localStorage.getItem('datoTrabajadoresNombre').split(",")[i-1]
+    inputSalario[i-1].value = localStorage.getItem('datoTrabajadoresSalario').split(",")[i-1]
+    }
+
+    inputDiessel.value = localStorage.getItem('datoDiessel')
+
+    inputPalma[0].value = localStorage.getItem('datoPalmaPrecioT')
+    inputPalma[1].value = localStorage.getItem('datoCostoCamionT')
+    inputPalma[2].value = localStorage.getItem('datoCantPalmaT')
+
     eventoSuma()
 }
 
-saveData.addEventListener("click", function(){
-    Toast.fire({
-        icon: "info",
-        title: "Información guardada con éxito"
-    });
-})
+function retearDatos(){
+    contTarjetas = 0
+    tarjetas.innerHTML = ""
+    eventoAñadir()
+
+    inputDiessel.value = ""
+    inputPalma[0].value = ""
+    inputPalma[1].value = ""
+    inputPalma[2].value = ""
+    eventoSuma()
+    guardarDatos()
+}
 
 resetData.addEventListener("click", function(){
     Toast.fire({
         icon: "info",
         title: "Información Reiniciada con éxito"
     });
+    retearDatos()
 })
 
 const Toast = Swal.mixin({
@@ -500,7 +543,7 @@ function sweet(n){
         tarjeta[n].classList.remove('vista');
         setTimeout(() => {
             tarjeta[n].classList.add('eliminada');
-        }, 500);
+        }, 250);
         inputSalario[n].value = 0
         eventoSuma()
     }
