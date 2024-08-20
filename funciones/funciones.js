@@ -185,7 +185,7 @@ plegarBotones[0].style.setProperty('--display-state', 'none');
 plegar.addEventListener("click", function(){
     
     if(plegar.classList.contains("cerrado")){
-        plegar.style.setProperty('--width-state', '18vw');
+        plegar.style.setProperty('--width-state', '20vw');
         plegar.style.setProperty('--height-state', '6vh');
         setTimeout(() => {
             plegarBotones[0].style.setProperty('--display-state', 'auto');
